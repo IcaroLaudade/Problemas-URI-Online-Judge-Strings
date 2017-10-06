@@ -9,10 +9,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/**
- *
- * @author 253746
- */
 public class Main {
 
     public static void main(String[] args) throws IOException {
@@ -22,34 +18,38 @@ public class Main {
         String linha;
 
         while ((linha = br.readLine()) != null) {
+            String textoFormatado = "";
             char[] palavrasChar = linha.toCharArray();
             for (int contador = 0; contador < palavrasChar.length; contador++) {
                 if (Character.isLetter(palavrasChar[contador])) {
                     for (int contador2 = 0; contador2 < alfabeto.length; contador2++) {
                         if (Character.toLowerCase(palavrasChar[contador]) == Character.toLowerCase(alfabeto[contador2])) {
                             if (contador2 > 12 && Character.isUpperCase(palavrasChar[contador])) {
-                                palavrasChar[contador] = Character.toUpperCase(alfabeto[contador2 - 13]);
+                                // palavrasChar[contador] = Character.toUpperCase(alfabeto[contador2 - 13]);
+                                textoFormatado += Character.toUpperCase(alfabeto[contador2 - 13]);;
                             } else if (contador2 > 12 && Character.isLowerCase(palavrasChar[contador])) {
-                                palavrasChar[contador] = alfabeto[contador2 - 13];
+                                // palavrasChar[contador] = alfabeto[contador2 - 13];
+                                textoFormatado += Character.toLowerCase(alfabeto[contador2 - 13]);
                             } else if (Character.isUpperCase(palavrasChar[contador])) {
                                 int diferenca = contador2 - 13;
                                 int tamanhoAlfabeto = 26 + diferenca;
-                                System.out.println(tamanhoAlfabeto);
-                                palavrasChar[contador] = Character.toUpperCase(alfabeto[tamanhoAlfabeto]);
+                                //palavrasChar[contador] = Character.toUpperCase(alfabeto[tamanhoAlfabeto]);
+                                textoFormatado += Character.toUpperCase(alfabeto[tamanhoAlfabeto]);
                             } else if (Character.isLowerCase(palavrasChar[contador])) {
                                 int diferenca = contador2 - 13;
                                 int tamanhoAlfabeto = 26 + diferenca;
-                                System.out.println(tamanhoAlfabeto);
-                                palavrasChar[contador] = alfabeto[tamanhoAlfabeto];
+                                //palavrasChar[contador] = alfabeto[tamanhoAlfabeto];
+                                textoFormatado += Character.toLowerCase(alfabeto[tamanhoAlfabeto]);
                             }
                         }
                     }
-
+                }
+                if (!Character.isLetter(palavrasChar[contador])) {
+                    textoFormatado += palavrasChar[contador];
                 }
             }
-            String textoFormatado = new String(palavrasChar);
+
             System.out.println(textoFormatado);
         }
     }
-
 }
